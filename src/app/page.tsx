@@ -1,4 +1,3 @@
-// src/pages/index.tsx
 import React from "react";
 import BlogPostCard from "../components/BlogPostCard";
 
@@ -20,6 +19,21 @@ const mockPosts = [
     title: "Second Post",
     summary: "This is the summary of the second post.",
     slug: "second-post",
+  },
+  {
+    title: "Third Post",
+    summary: "This is the summary of the third post.",
+    slug: "third-post",
+  },
+  {
+    title: "Third Post",
+    summary: "This is the summary of the third post.",
+    slug: "third-post",
+  },
+  {
+    title: "Third Post",
+    summary: "This is the summary of the third post.",
+    slug: "third-post",
   },
   {
     title: "Third Post",

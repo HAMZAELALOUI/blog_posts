@@ -21,7 +21,7 @@ const BlogPostCard: React.FC<BlogPostCardProps> = ({
           </div>
           <p className="mt-2 text-gray-500">{summary}</p>
           <div className="mt-4">
-            <Link href={`/posts/${slug}`}>
+            <Link href={`/posts/${slug}`} passHref>
               <span className="text-indigo-600 hover:text-indigo-900 cursor-pointer">
                 Read more
               </span>
