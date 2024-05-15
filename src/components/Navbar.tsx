@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Button from "./Button";
 
 const Navbar: React.FC = () => {
   return (
@@ -15,13 +16,13 @@ const Navbar: React.FC = () => {
             href="/about"
             className="text-gray-600 hover:text-indigo-600 mx-2"
           >
-            About
+            <Button>Login</Button>
           </Link>
           <Link
             href="/contact"
             className="text-gray-600 hover:text-indigo-600 mx-2"
           >
-            Contact
+            <Button>Register</Button>
           </Link>
         </div>
       </div>

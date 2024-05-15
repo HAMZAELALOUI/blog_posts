@@ -4,12 +4,12 @@ import Link from "next/link";
 const FeaturedArticle = () => {
   return (
     <>
-      <h3 className="text-2xl font-bold text-gray-800 mb-4">
+      <h3 className="text-2xl font-bold text-gray-600 mb-4">
         Featured Articles
       </h3>
       <div className="bg-white rounded-xl shadow-md overflow-hidden mb-6">
         <Image
-          src="/images/featured-image.jpg"
+          src="/assets/1.png"
           alt="Featured"
           width={800}
           height={600}

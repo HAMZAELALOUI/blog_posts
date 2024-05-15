@@ -7,7 +7,7 @@ const MainArticle: React.FC = () => {
   return (
     <div className="bg-white rounded-xl shadow-md overflow-hidden mb-6">
       <Image
-        src="/images/featured-image.jpg"
+        src="/assets/main.png"
         alt="Featured"
         width={800}
         height={600}

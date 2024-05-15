@@ -1,4 +1,6 @@
+import React from "react";
 import Link from "next/link";
+import Image from "next/image";
 
 interface BlogPostCardProps {
   title: string;
@@ -17,6 +19,13 @@ const BlogPostCard: React.FC<BlogPostCardProps> = ({
 }) => {
   return (
     <div className="bg-white rounded-xl shadow-md overflow-hidden mb-6">
+      <Image
+        src="/assets/2.jpg"
+        alt={title}
+        width={800}
+        height={600}
+        className="w-full h-64 object-cover"
+      />
       <div className="p-6">
         <div className="text-sm text-gray-500">
           {author} | {date}

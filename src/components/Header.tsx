@@ -1,5 +1,5 @@
-// components/Header.tsx
 import React from "react";
+import Button from "./Button";
 
 const Header: React.FC = () => {
   return (
@@ -15,9 +15,7 @@ const Header: React.FC = () => {
             placeholder="Search articles"
             className="p-3 rounded-md border border-gray-300 mr-2"
           />
-          <button className="p-3 rounded-md bg-red-500 text-white">
-            Search
-          </button>
+          <Button>Search</Button>
         </div>
       </div>
     </header>
