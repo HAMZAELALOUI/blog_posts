@@ -1,0 +1,2 @@
+*.exe filter=lfs diff=lfs merge=lfs -text
+public/assets/Cursor[[:space:]]Setup[[:space:]]0.33.4[[:space:]]-[[:space:]]x64.exe filter=lfs diff=lfs merge=lfs -text
