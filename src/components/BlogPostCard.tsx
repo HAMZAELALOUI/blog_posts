@@ -8,6 +8,7 @@ interface BlogPostCardProps {
   slug: string;
   author: string;
   date: string;
+  image: string;
 }
 
 const BlogPostCard: React.FC<BlogPostCardProps> = ({
@@ -16,11 +17,12 @@ const BlogPostCard: React.FC<BlogPostCardProps> = ({
   slug,
   author,
   date,
+  image,
 }) => {
   return (
     <div className="bg-white rounded-xl shadow-md overflow-hidden mb-6">
       <Image
-        src="/assets/2.jpg"
+        src={image || "/assets/default.png"} // Use a default image if none is provided
         alt={title}
         width={800}
         height={600}
