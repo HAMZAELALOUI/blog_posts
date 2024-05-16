@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import Button from "../components/Button";
+import axios from "axios";
 
 const Write: React.FC = () => {
   const [title, setTitle] = useState("");
@@ -12,9 +13,26 @@ const Write: React.FC = () => {
     }
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    // Handle form submission
+    const formData = new FormData();
+    formData.append("title", title);
+    formData.append("content", content);
+    formData.append("date", new Date().toISOString());
+    if (image) {
+      formData.append("image", image);
+    }
+
+    try {
+      const response = await axios.post("/api/posts", formData, {
+        headers: {
+          "Content-Type": "multipart/form-data",
+        },
+      });
+      console.log("Post created:", response.data);
+    } catch (error) {
+      console.error("Error creating post:", error);
+    }
   };
 
   return (
@@ -76,7 +94,7 @@ const Write: React.FC = () => {
           )}
         </div>
         <div className="text-center">
-          <Button>Publish</Button>
+          <Button type="submit">Publish</Button>
         </div>
       </form>
     </div>
