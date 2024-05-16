@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import Button from "../components/Button";
-import axios from "axios";
+import { createPost } from "../../services/postsService";
 
 const Write: React.FC = () => {
   const [title, setTitle] = useState("");
@@ -24,12 +24,8 @@ const Write: React.FC = () => {
     }
 
     try {
-      const response = await axios.post("/api/posts", formData, {
-        headers: {
-          "Content-Type": "multipart/form-data",
-        },
-      });
-      console.log("Post created:", response.data);
+      const response = await createPost(formData);
+      console.log("Post created:", response);
     } catch (error) {
       console.error("Error creating post:", error);
     }

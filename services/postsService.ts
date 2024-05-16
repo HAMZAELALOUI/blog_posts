@@ -8,16 +8,24 @@ export const fetchPosts = async (): Promise<BlogPost[]> => {
   return response.data.data;
 };
 
-export const createPost = async (post: BlogPost): Promise<BlogPost> => {
-  const response = await axios.post(API_URL, post);
+export const createPost = async (formData: FormData): Promise<BlogPost> => {
+  const response = await axios.post(API_URL, formData, {
+    headers: {
+      "Content-Type": "multipart/form-data",
+    },
+  });
   return response.data.data;
 };
 
 export const updatePost = async (
   id: string,
-  post: BlogPost
+  formData: FormData
 ): Promise<BlogPost> => {
-  const response = await axios.put(`${API_URL}/${id}`, post);
+  const response = await axios.put(`${API_URL}/${id}`, formData, {
+    headers: {
+      "Content-Type": "multipart/form-data",
+    },
+  });
   return response.data.data;
 };
 

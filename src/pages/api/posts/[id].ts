@@ -1,4 +1,6 @@
 import type { NextApiRequest, NextApiResponse } from "next";
+import multer from "multer";
+import path from "path";
 import dbConnect from "../../../../lib/dbConnect";
 import BlogPost from "../../../../models/BlogPost";
 
@@ -7,14 +9,35 @@ type Data = {
   data?: any;
 };
 
+const upload = multer({
+  storage: multer.diskStorage({
+    destination: "./public/uploads/",
+    filename: (req, file, cb) =>
+      cb(null, Date.now() + path.extname(file.originalname)),
+  }),
+});
+
+const uploadMiddleware = upload.single("image");
+
+const runMiddleware = (req: NextApiRequest, res: NextApiResponse, fn: any) => {
+  return new Promise((resolve, reject) => {
+    fn(req, res, (result: any) => {
+      if (result instanceof Error) {
+        return reject(result);
+      }
+      return resolve(result);
+    });
+  });
+};
+
 export default async function handler(
   req: NextApiRequest,
   res: NextApiResponse<Data>
 ) {
+  await dbConnect();
+
   const { method } = req;
   const { id } = req.query;
-
-  await dbConnect();
 
   switch (method) {
     case "GET":
@@ -27,38 +50,42 @@ export default async function handler(
         }
         res.status(200).json({ success: true, data: post });
       } catch (error) {
-        console.error("Error fetching post:", error);
         res.status(500).json({ success: false, data: error.message });
       }
       break;
     case "PUT":
       try {
-        const post = await BlogPost.findByIdAndUpdate(id, req.body, {
-          new: true,
-          runValidators: true,
-        });
-        if (!post) {
+        await runMiddleware(req, res, uploadMiddleware);
+
+        const { title, content, date } = req.body;
+        const image = req.file ? `/uploads/${req.file.filename}` : undefined;
+
+        const updatedPost = await BlogPost.findByIdAndUpdate(
+          id,
+          { title, content, date, ...(image && { image }) },
+          { new: true }
+        );
+
+        if (!updatedPost) {
           return res
             .status(404)
             .json({ success: false, data: "Post not found" });
         }
-        res.status(200).json({ success: true, data: post });
+        res.status(200).json({ success: true, data: updatedPost });
       } catch (error) {
-        console.error("Error updating post:", error);
         res.status(500).json({ success: false, data: error.message });
       }
       break;
     case "DELETE":
       try {
-        const deletedPost = await BlogPost.deleteOne({ _id: id });
+        const deletedPost = await BlogPost.findByIdAndDelete(id);
         if (!deletedPost) {
           return res
             .status(404)
             .json({ success: false, data: "Post not found" });
         }
-        res.status(200).json({ success: true, data: {} });
+        res.status(200).json({ success: true, data: deletedPost });
       } catch (error) {
-        console.error("Error deleting post:", error);
         res.status(500).json({ success: false, data: error.message });
       }
       break;
@@ -67,3 +94,9 @@ export default async function handler(
       break;
   }
 }
+
+export const config = {
+  api: {
+    bodyParser: false, // Disallow body parsing, consume as stream
+  },
+};

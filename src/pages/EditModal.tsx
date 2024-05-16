@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from "react";
 import Button from "../components/Button";
+import { updatePost } from "../../services/postsService";
 
 interface BlogPost {
-  id: number;
+  _id: string;
   title: string;
   content: string;
   date: string;
@@ -39,16 +40,23 @@ const EditModal: React.FC<EditModalProps> = ({
     }
   };
 
-  const handleSave = () => {
+  const handleSave = async () => {
     if (post) {
-      const updatedPost: BlogPost = {
-        ...post,
-        title,
-        content,
-        image: image ? URL.createObjectURL(image) : post.image,
-      };
-      onSave(updatedPost);
-      onClose();
+      const formData = new FormData();
+      formData.append("title", title);
+      formData.append("content", content);
+      formData.append("date", new Date().toISOString());
+      if (image) {
+        formData.append("image", image);
+      }
+
+      try {
+        const updatedPost = await updatePost(post._id, formData);
+        onSave(updatedPost);
+        onClose();
+      } catch (error) {
+        console.error("Error updating post:", error);
+      }
     }
   };
 
