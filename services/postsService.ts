@@ -1,27 +1,26 @@
 import axios from "axios";
+import { BlogPost } from "../models/BlogPost";
 
 const API_URL = "/api/posts";
 
-// Fetch all posts
-export const fetchPosts = async () => {
+export const fetchPosts = async (): Promise<BlogPost[]> => {
   const response = await axios.get(API_URL);
-  return response.data;
+  return response.data.data;
 };
 
-// Add a new post
-export const addPost = async (post: any) => {
+export const createPost = async (post: BlogPost): Promise<BlogPost> => {
   const response = await axios.post(API_URL, post);
-  return response.data;
+  return response.data.data;
 };
 
-// Edit a post
-export const editPost = async (id: string, post: any) => {
+export const updatePost = async (
+  id: string,
+  post: BlogPost
+): Promise<BlogPost> => {
   const response = await axios.put(`${API_URL}/${id}`, post);
-  return response.data;
+  return response.data.data;
 };
 
-// Delete a post
-export const deletePost = async (id: string) => {
-  const response = await axios.delete(`${API_URL}/${id}`);
-  return response.data;
+export const deletePost = async (id: string): Promise<void> => {
+  await axios.delete(`${API_URL}/${id}`);
 };
