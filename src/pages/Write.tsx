@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { useRouter } from "next/router";
 import Button from "../components/Button";
 import { createPost } from "../../services/postsService";
 
@@ -6,6 +7,7 @@ const Write: React.FC = () => {
   const [title, setTitle] = useState("");
   const [content, setContent] = useState("");
   const [image, setImage] = useState<File | null>(null);
+  const router = useRouter();
 
   const handleImageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     if (e.target.files && e.target.files[0]) {
@@ -26,6 +28,7 @@ const Write: React.FC = () => {
     try {
       const response = await createPost(formData);
       console.log("Post created:", response);
+      router.push("/MyBlogs"); // Redirect to the "myblogs" page
     } catch (error) {
       console.error("Error creating post:", error);
     }

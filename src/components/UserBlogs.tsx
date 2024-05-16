@@ -1,5 +1,3 @@
-// components/UserBlogs.tsx
-
 import React, { useState, useEffect } from "react";
 import { FaEdit, FaTrash } from "react-icons/fa";
 import ButtonEd from "./ButtonEd";
@@ -81,6 +79,15 @@ const UserBlogs: React.FC = () => {
 
   const paginate = (pageNumber: number) => setCurrentPage(pageNumber);
 
+  const truncateContent = (content: string) => {
+    const words = content.split(" ");
+    const truncatedWords = words.slice(0, Math.ceil(words.length * 0.25));
+    return (
+      truncatedWords.join(" ") +
+      (truncatedWords.length < words.length ? "..." : "")
+    );
+  };
+
   return (
     <div className="container mx-auto px-4 py-12">
       <h1 className="text-5xl font-bold text-center mb-12 text-gray-800">
@@ -104,7 +111,9 @@ const UserBlogs: React.FC = () => {
               <h2 className="text-2xl font-bold mb-4 text-gray-800">
                 {post.title}
               </h2>
-              <p className="text-gray-600 mb-4">{post.content}</p>
+              <p className="text-gray-600 mb-4">
+                {truncateContent(post.content)}
+              </p>
               <p className="text-gray-400 mb-4">{post.date}</p>
               <div className="flex justify-between">
                 <ButtonEd
