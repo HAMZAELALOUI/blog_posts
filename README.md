@@ -41,6 +41,7 @@ This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-opti
 
 #### Home Page
 ![Home Page](./screens/homepage.png)
+![Rest Home Page](./screens/resthomepage.png)
 
 #### My Blogs Page
 ![My Blogs Page](./screens/myBlogs.png)
@@ -51,8 +52,7 @@ This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-opti
 #### Write Post Page
 ![Write Post Page](./screens/writePost.png)
 
-#### Rest Home Page
-![Rest Home Page](./screens/resthomepage.png)
+
 
 ## Axios and MongoDB Integration
 
