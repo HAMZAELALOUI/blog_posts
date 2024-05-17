@@ -1,7 +1,7 @@
-Here is the complete README file formatted with Markdown code:
 
-```markdown
-# Next.js Blog Project
+
+
+# Next.js Blog Post Project
 
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
@@ -36,6 +36,23 @@ This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-opti
 - Delete blog posts
 - View all blog posts
 - Responsive design
+
+### Screenshots
+
+#### Home Page
+![Home Page](./screens/homepage.png)
+
+#### My Blogs Page
+![My Blogs Page](./screens/myBlogs.png)
+
+#### Edit Post Page
+![Edit Post Page](./screens/editPost.png)
+
+#### Write Post Page
+![Write Post Page](./screens/writePost.png)
+
+#### Rest Home Page
+![Rest Home Page](./screens/resthomepage.png)
 
 ## Axios and MongoDB Integration
 
@@ -76,6 +93,54 @@ Axios is used for making HTTP requests to your API routes or external APIs.
    };
    ```
 
+## Setting Up Jest in a Next.js TypeScript Project
+
+To set up Jest for a Next.js project using TypeScript, follow these steps:
+
+1. **Install Dependencies**: Install the necessary packages for Jest and TypeScript support.
+   ```bash
+   npm install --save-dev jest @types/jest ts-jest
+   npm install --save-dev @testing-library/react @testing-library/jest-dom
+   ```
+
+2. **Configure Jest**: Create a `jest.config.js` file in the root of your project with the following content:
+   ```javascript
+   const nextJest = require('next/jest')
+
+   const createJestConfig = nextJest({
+     dir: './',
+   })
+
+   const customJestConfig = {
+     setupFilesAfterEnv: ['<rootDir>/jest.setup.js'],
+     moduleNameMapper: {
+       '^@/components/(.*)$': '<rootDir>/components/$1',
+     },
+     testEnvironment: 'jsdom',
+   }
+
+   module.exports = createJestConfig(customJestConfig)
+   ```
+
+3. **Setup Jest**: Create a `jest.setup.js` file in the root of your project with the following content:
+   ```javascript
+   import '@testing-library/jest-dom/extend-expect'
+   ```
+
+4. **Add Scripts**: Update your `package.json` to include the Jest script.
+   ```json
+   "scripts": {
+     "test": "jest"
+   }
+   ```
+
+5. **Create Test Files**: Create test files with the `.test.tsx` or `.spec.tsx` extension.
+
+6. **Run Tests**: Run your tests using the following command:
+   ```bash
+   npm test
+   ```
+
 ## Learn More
 
 To learn more about Next.js, take a look at the following resources:
@@ -90,5 +155,5 @@ You can check out [the Next.js GitHub repository](https://github.com/vercel/next
 The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
 
 Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
-```
+
 
