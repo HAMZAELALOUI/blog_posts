@@ -51,9 +51,17 @@ const UserBlogs: React.FC = () => {
     setSearchTerm(e.target.value);
   };
 
-  const handleSave = async (updatedPost: BlogPost) => {
+  const handleSave = async (updatedPost: BlogPost, image: File | null) => {
     try {
-      const updatedData = await updatePost(updatedPost._id, updatedPost);
+      const formData = new FormData();
+      formData.append("title", updatedPost.title);
+      formData.append("content", updatedPost.content);
+      formData.append("date", updatedPost.date);
+      if (image) {
+        formData.append("image", image);
+      }
+
+      const updatedData = await updatePost(updatedPost._id, formData);
       setPosts(
         posts.map((post) => (post._id === updatedPost._id ? updatedData : post))
       );
@@ -94,7 +102,10 @@ const UserBlogs: React.FC = () => {
         My Blog Posts
       </h1>
       <div className="mb-8">
-        <SearchBar onChange={handleSearchChange} />
+        <SearchBar
+          placeholder="Search articles"
+          onSearch={handleSearchChange}
+        />
       </div>
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
         {currentPosts.map((post) => (

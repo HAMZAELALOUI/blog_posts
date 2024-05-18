@@ -12,19 +12,19 @@ const Navbar: React.FC = () => {
         <div>
           <Link
             href="/"
-            className="text-gray-600 hover:text-indigo-600 mx-2 p-3 rounded-md hover:text-white hover:bg-red-600 transition duration-300 ease-in-out"
+            className="text-gray-600 mx-2 p-3 rounded-md hover:text-white hover:bg-red-600 transition duration-300 ease-in-out"
           >
             Home
           </Link>
           <Link
             href="/Write"
-            className="text-gray-600 hover:text-indigo-600 mx-2 p-3 rounded-md hover:text-white hover:bg-red-600 transition duration-300 ease-in-out"
+            className="text-gray-600  mx-2 p-3 rounded-md hover:text-white hover:bg-red-600 transition duration-300 ease-in-out"
           >
             Write
           </Link>
           <Link
             href="/MyBlogs"
-            className="text-gray-600 hover:text-indigo-600 mx-2 p-3 rounded-md hover:text-white hover:bg-red-600 transition duration-300 ease-in-out"
+            className="text-gray-600  mx-2 p-3 rounded-md hover:text-white hover:bg-red-600 transition duration-300 ease-in-out"
           >
             My Blogs
           </Link>

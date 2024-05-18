@@ -4,7 +4,7 @@ import Image from "next/image";
 import { fetchPosts } from "../../services/postsService";
 
 interface BlogPost {
-  _id: string;
+  _id?: string;
   title: string;
   content: string;
   date: string;

@@ -3,7 +3,7 @@ import Button from "../components/Button";
 import { updatePost } from "../../services/postsService";
 
 interface BlogPost {
-  _id: string;
+  _id?: string;
   title: string;
   content: string;
   date: string;
@@ -14,7 +14,7 @@ interface EditModalProps {
   post: BlogPost | null;
   isOpen: boolean;
   onClose: () => void;
-  onSave: (updatedPost: BlogPost) => void;
+  onSave: (updatedPost: BlogPost, image: File | null) => void;
 }
 
 const EditModal: React.FC<EditModalProps> = ({
@@ -52,7 +52,7 @@ const EditModal: React.FC<EditModalProps> = ({
 
       try {
         const updatedPost = await updatePost(post._id, formData);
-        onSave(updatedPost);
+        onSave(updatedPost, image);
         onClose();
       } catch (error) {
         console.error("Error updating post:", error);

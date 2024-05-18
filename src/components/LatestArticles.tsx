@@ -3,7 +3,7 @@ import BlogPostCard from "./BlogPostCard";
 import { fetchPosts } from "../../services/postsService";
 
 interface BlogPost {
-  _id: string;
+  _id?: string;
   title: string;
   content: string;
   date: string;
@@ -21,7 +21,7 @@ const LatestArticles: React.FC = () => {
           const sortedPosts = posts.sort(
             (a, b) => new Date(b.date).getTime() - new Date(a.date).getTime()
           );
-          setLatestPosts(sortedPosts.slice(0, 3)); // Get the latest 3 posts
+          setLatestPosts(sortedPosts.slice(0, 3));
         }
       } catch (error) {
         console.error("Error fetching latest posts:", error);

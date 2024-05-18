@@ -3,6 +3,9 @@ import Button from "./Button";
 import SearchBar from "./SearchBar";
 
 const Header: React.FC = () => {
+  const handleSearch = () => {
+    console.log("Search initiated");
+  };
   return (
     <header className="bg-white py-8">
       <div className="container mx-auto text-center mt-16">
@@ -10,7 +13,7 @@ const Header: React.FC = () => {
         <p className="mt-4 text-xl text-gray-600">
           Simple breakdowns of the day’s most important AI news.
         </p>
-        <SearchBar/>
+        <SearchBar placeholder="Search articles" onSearch={handleSearch} />
       </div>
     </header>
   );
