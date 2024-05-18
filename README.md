@@ -1,6 +1,4 @@
 
-
-
 # Next.js Blog Post Project
 
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
@@ -51,8 +49,6 @@ This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-opti
 
 #### Write Post Page
 ![Write Post Page](./screens/writePost.png)
-
-
 
 ## Axios and MongoDB Integration
 
@@ -141,6 +137,27 @@ To set up Jest for a Next.js project using TypeScript, follow these steps:
    npm test
    ```
 
+## Using Docker
+
+To build and run the application using Docker, follow these steps:
+
+### Steps to Build and Run
+
+1. **Build the Docker Image:**
+   ```bash
+   docker-compose build
+   ```
+
+2. **Run the Docker Containers:**
+   ```bash
+   docker-compose up
+   ```
+
+3. **Access the Application:**
+   Open your browser and navigate to `http://localhost:3000`.
+
+If you continue to face issues, you may need to investigate your network settings further or consult your network administrator.
+
 ## Learn More
 
 To learn more about Next.js, take a look at the following resources:
@@ -155,5 +172,3 @@ You can check out [the Next.js GitHub repository](https://github.com/vercel/next
 The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
 
 Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
-
-
